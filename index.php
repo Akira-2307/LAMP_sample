@@ -7,8 +7,11 @@ try {
 ​
     $sql = "select * from user";
     $result = $dbh->query($sql);
+
+    header('Location: index.php?fg-1');
 } catch (PDOException $e) {
-    echo "接続失敗: " . $e->getMessage() . "\n";
+    //echo "接続失敗: " . $e->getMessage() . "\n";
+    header('LOcation: index.php?fg-1?err=$e->get')
     exit();
 }
 ?>
@@ -78,7 +81,30 @@ try {
                    </tbody>
                </table>
             </div>
-            <div id="tab2" class="tab-pane">sample2</div>
+            <div id="tab2" class="tab-pane">
+                <form class="mt-5" action="./insert.php" method="POST">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="id">ID</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="id" id="id">
+                        </div>
+                       
+                    </div>   
+                    <div class="form-group row" >
+                        <label class="col-sm-2 col-form-label" for="name">Your Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="name" id="name">
+                        </div>
+                    </div>  
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="age">Age</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="age" id="age">
+                        </div>
+                    </div>  
+                    <button type="submit" class="btn btn-primary">Insert</button>
+                </form>
+            </div>
             <div id="tab3" class="tab-pane">sample3</div>
             <div id="tab4" class="tab-pane">sample4</div>
         </div>
