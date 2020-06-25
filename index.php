@@ -7,6 +7,7 @@ try {
 ​
     $sql = "select * from user";
     $result = $dbh->query($sql);
+    $del_list = $dbh->query($sql);
 
     header('Location: index.php?fg-1');
 } catch (PDOException $e) {
@@ -106,7 +107,33 @@ try {
                 </form>
             </div>
             <div id="tab3" class="tab-pane">sample3</div>
-            <div id="tab4" class="tab-pane">sample4</div>
+            <div id="tab4" class="tab-pane">
+            <table class="table table-bordered mt-2">
+                
+                   <thead class="thead-dark">
+                       <tr>
+                           <th>Id</th>
+                           <th>Name</th>
+                           <th>Age</th>
+                           <th>-</th>
+                       </tr>
+                   </thead>
+
+                    <tbody class="table-striped">
+                        <?php foreach($del_list as $value){?>
+                       <tr>
+                           <th><?php echo "$value[id]"?></th>
+                           <td><?php echo "$value[name]"?></td>
+                           <td><?php echo "$value[age]"?></td>
+                       </tr>
+                        <?php }?>
+                        <form action=".delete.php" method="$_GET">
+                            <input type="text" class ="d-none" value="<?php echo "$value[id]"?>" >
+                            <button type="submit" class="btn btn-primary">delete</button>
+                        </form>
+                   </tbody>
+               </table>
+            </div>
         </div>
     </div>
 
