@@ -12,7 +12,7 @@ try {
     header('Location: index.php?fg-1');
 } catch (PDOException $e) {
     //echo "接続失敗: " . $e->getMessage() . "\n";
-    header('LOcation: index.php?fg-1?err=$e->get')
+    header('LOcation: index.php?fg-2?err=$e->get')
     exit();
 }
 ?>
@@ -42,6 +42,14 @@ try {
             </p>
         </div>
     </div>
+    <div class="container">
+        <?php if($_GET['fg']==1){?>
+            <p>success</p>
+        <?php}else if($_GET['fg']==2){?>
+            <p>failed</p>  
+        <?php}?>
+    </div>
+
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -128,7 +136,7 @@ try {
                        </tr>
                         <?php }?>
                         <form action=".delete.php" method="$_GET">
-                            <input type="text" class ="d-none" value="<?php echo "$value[id]"?>" >
+                            <input type="text" class ="d-none" value="<?php echo "$value[id]"?>" name="id">
                             <button type="submit" class="btn btn-primary">delete</button>
                         </form>
                    </tbody>
